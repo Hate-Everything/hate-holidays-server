@@ -7,12 +7,16 @@ const { client_id, client_secret, redirect_uri } = require("./config")
 
 const app = express()
 
-app.use(cors({
-  origin: '*'
-}))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: "text/*" }))
 app.use(bodyParser.urlencoded({ extended: false }))
+
+// Enabled Access-Control-Allow-Origin", "*" in the header so as to by-pass the CORS error.
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 
 app.post("/authenticate", (req, res) => {
   const { code } = req.body

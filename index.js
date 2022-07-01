@@ -7,7 +7,9 @@ const { client_id, client_secret, redirect_uri } = require("./config")
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: '*'
+}))
 app.use(bodyParser.json())
 app.use(bodyParser.json({ type: "text/*" }))
 app.use(bodyParser.urlencoded({ extended: false }))

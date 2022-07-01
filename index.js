@@ -12,8 +12,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: "text/*" }))
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.options('*', cors())
-
 app.post("/authenticate", (req, res) => {
   const { code } = req.body
 

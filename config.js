@@ -10,7 +10,7 @@ const config = {
 
 const envVarsSchema = Joi.object({
   client_id: Joi.string().required(),
-  redirect_uri: Joi.string().required(),
+  redirect_uri: Joi.string().optional(),
   client_secret: Joi.string().required(),
   proxy_url: Joi.string().optional()
 })

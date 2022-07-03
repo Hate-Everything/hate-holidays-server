@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 const fetch = require("node-fetch")
 const cors = require('cors')
 
-const { client_id, client_secret, redirect_uri } = require("./config")
+const { client_id, client_secret } = require("./config")
 
 const app = express()
 
@@ -16,7 +16,7 @@ app.post("/authenticate", (req, res) => {
   const { code } = req.body
 
   // Request to exchange code for an access token
-  fetch(`https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${client_secret}&code=${code}&redirect_uri=${redirect_uri}`, {
+  fetch(`https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${client_secret}&code=${code}`, {
     method: "POST",
     headers: {
       Accept: "application/json"
@@ -33,7 +33,6 @@ app.post("/authenticate", (req, res) => {
 
 app.get("/profile", (req, res) => {
   const { access_token } = req.headers
-  console.log('access_token =', access_token)
   fetch(`https://api.github.com/user`, {
     headers: {
       Authorization: `token ${access_token}`,

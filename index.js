@@ -13,10 +13,12 @@ app.use(bodyParser.json({ type: "text/*" }))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post("/authenticate", (req, res) => {
-  const { code, client_id } = req.body
+  const { code, client_id, isDevelopment = false } = req.body
+
+  const secret = isDevelopment && process.env.CLIENT_SECRET_DEVELOPMENT || client_secret
 
   // Request to exchange code for an access token
-  fetch(`https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${client_secret}&code=${code}`, {
+  fetch(`https://github.com/login/oauth/access_token?client_id=${client_id}&client_secret=${secret}&code=${code}`, {
     method: "POST",
     headers: {
       Accept: "application/json"

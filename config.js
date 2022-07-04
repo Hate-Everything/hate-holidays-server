@@ -3,7 +3,7 @@ require("dotenv").config()
 
 const config = {
   redirect_uri: process.env.REDIRECT_URI,
-  client_secret: process.env.NODE_ENV === 'development' ? process.env.CLIENT_SECRET_DEVELOPMENT : process.env.CLIENT_SECRET,
+  client_secret: process.env.CLIENT_SECRET,
   proxy_url: process.env.PROXY_URL
 }
 

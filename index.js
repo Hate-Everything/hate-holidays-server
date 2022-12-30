@@ -12,6 +12,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.json({ type: "text/*" }))
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.get('/', (req, res) => {
+  res.send('API running...')
+});
+
 app.post("/authenticate", (req, res) => {
   const { code, client_id, isDevelopment = false } = req.body
 
